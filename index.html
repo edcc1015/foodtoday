@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>陈饿狗今天吃什么</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #f0f0f0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+            flex-wrap: wrap;
+        }
+
+        .image {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            background-color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 5px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .cell {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid #ddd;
+            transition: 0.2s;
+        }
+
+        .cell.highlight {
+            border: 3px solid red;
+            background: #ffebeb;
+        }
+
+        textarea {
+            width: 90%;
+            max-width: 600px;
+            height: 100px;
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 10px 30px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .image {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="image"><img src="images/left1.png"></div>
+        <div class="grid" id="grid"></div>
+        <div class="image"><img src="images/right1.png"></div>
+    </div>
+
+    <textarea id="input" placeholder="每行一个奖项">马六
+康记 
+一粥面 
+贵州米粉 
+24 
+巴蜀轩 
+dare 
+吉野家 
+麦当劳 
+杰克汉堡 
+大快活 
+快乐峰 
+清汤牛腩 
+卓记
+萨莉亚
+小辣椒</textarea>
+
+    <button onclick="startDraw()">开吃</button>
+
+    <script>
+        const gridEl = document.getElementById('grid');
+        const inputEl = document.getElementById('input');
+        let cells = [];
+
+        function updateGrid() {
+            const lines = inputEl.value.trim().split('\n').filter(x => x);
+            gridEl.innerHTML = '';
+            cells = [];
+
+            lines.forEach((line, index) => {
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                cell.textContent = line;
+                gridEl.appendChild(cell);
+                cells.push(cell);
+            });
+        }
+
+        inputEl.addEventListener('input', updateGrid);
+        updateGrid();
+
+        let interval = null;
+
+        function startDraw() {
+            if (cells.length === 0) return;
+
+            let index = 0;
+            let rounds = 0;
+            let total = Math.floor(20 + Math.random() * 30);
+
+            clearInterval(interval);
+            interval = setInterval(() => {
+                cells.forEach(c => c.classList.remove('highlight'));
+                cells[index].classList.add('highlight');
+                index = (index + 1) % cells.length;
+
+                rounds++;
+                if (rounds >= total) {
+                    clearInterval(interval);
+                }
+            }, 100);
+        }
+    </script>
+</body>
+</html>
