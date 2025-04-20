@@ -1,3 +1,24 @@
 # FoodTodayHKU
 香港大学-今天吃什么转盘
-[Link](https://edcc1015.github.io/foodtoday/)
+[Link](https://edcc1015.github.io/FoodTodayHKU/)
+***
+马六  
+康记  
+一粥面  
+贵州米粉  
+24  
+巴蜀轩  
+dare  
+吉野家  
+麦当劳  
+杰克汉堡  
+大快活  
+快乐峰  
+清汤牛腩  
+卓记  
+萨莉亚  
+书湘门第  
+南记粉面  
+香江冰室  
+佳记美食  
+小辣椒  
